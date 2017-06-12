@@ -1,8 +1,9 @@
 
 	
 	<?php
+	//dfsdfsdfsd
 	
-	
+try{
 
 $json_file = file_get_contents('http://api.openweathermap.org/data/2.5/weather?q=Los mochis PR&APPID=354151bca146c7630c957b7ed80bdd4b');
 
@@ -25,4 +26,8 @@ $cadena="Temp C: ".$temp_c."ºC".""."- Min: ".$tem_min."ºC"." "." +Max: ".$tem_
 //echo "Temp F: ".$temp_f."ºC"."<br/> \n";
 //echo "Humedad: ".$humedad."ºF"."<br/> \n";
 echo $cadena;
+}catch (Exception $e) {
+
+	echo "Error";
+}
 ?>
