@@ -11,6 +11,22 @@
 	<meta charset="utf-8">
 
 	<script>
+
+   function climaa(username, password){
+            var parametros = {
+                "username" : username,
+                "password" : password
+            };
+            $.ajax({
+                data:  parametros,
+                url:   'clima.php',
+                type:  'post',
+                success:  function (response) {
+                    $("#lbl_clima").html("Los mochis:"+response);
+                }
+            });
+        }
+
 		function realizarLogin(username, password){
         	var parametros = {
                 "username" : username,
@@ -27,6 +43,7 @@
                 		document.getElementById('Contenido').style.display = 'block';
                 		$("#lbl_username").html("Usuario: " + username);
                 		entregasPendientes(username,password);
+                        climaa();
                 	}
                 	else
                 		$("#res").html(response);
@@ -58,6 +75,9 @@
             	}
         	});
 		}
+
+   
+
 		function entregasPendientes(username, password){
         	var parametros = {
                 "username" : username,
@@ -132,6 +152,14 @@
             	}
         	});
 		}
+        function justNumbers(e)
+        {
+        var keynum = window.event ? window.event.keyCode : e.which;
+        if ((keynum == 8) || (keynum == 46))
+        return true;
+         
+        return /\d/.test(String.fromCharCode(keynum));
+        }
 	</script>
 </head>
 <body>
@@ -141,6 +169,7 @@
     			<div class="navbar-header">
       				<a class="navbar-brand" href="#">Madaditos Los Mochis</a>
       				<p class="navbar-text" id="lbl_username">Nombre de usuario</p>
+                    <p class="navbar-text" id="lbl_clima">Nombre de usuario</p>
     			</div>
 	    		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				    <ul class="nav navbar-nav navbar-right">
@@ -150,6 +179,14 @@
 			</div>
 		</nav>
 	</div>
+       
+   
+
+
+
+
+
+
 
 	<div class="jumbotron entregasPendientes" id="Contenido" style='display:none;''>
 		<label id="entregasPendientes">Aqui imprime la tabla</label>
@@ -167,8 +204,8 @@
 	<div class="jumbotron boxlogin" id="solicitarMandado" style='display:none;''>
 		<h2>Solicitar Mandado</h2>
 		<label>Ingrese la descripcion de su pedido: </label>
-		<input type="text" name="descripcion" id="descripcion" class="form-control" maxlength="300">
-		<input type="submit" name="solicitarM" class="btn btn-success" href="javascript:;" onclick="crearMandado($('#username').val(), $('#password').val(), $('#descripcion').val());return false;" value="Solicitar Mandado">
+		<input type="text" name="descripcion" id="descripcion" class="form-control" maxlength="300"  >
+		<input type="submit" name="solicitarM" class="btn btn-success" href="javascript:;" onclick="crearMandado($('#username').val(), $('#password').val(), $('#descripcion').val());return false;" value="Mandado En Curso">
 		<input type="submit" name="volverEntregas2" class="btn btn-success" href="javascript:;" onclick="volverEntregas2();return false;" value="Volver">
 		<br><br><br><label id="res_sol">Ingrese su pedido</label>
 	</div>
@@ -181,8 +218,13 @@
 			<label>Contraseña de usuario:</label>
 			<input type="password" name="password" id="password" class="form-control" maxlength="20">
 			<input type="submit" name="Conectarse" class="btn btn-success" href="javascript:;" onclick="realizarLogin($('#username').val(), $('#password').val());return false;" value="Iniciar Sesion">
+
 			<input type="submit" name="CrearUsuario" class="btn btn-success" href="javascript:;" onclick="crearUsuario($('#username').val(), $('#password').val());return false;" value="Crear Usuario">
-			<br><br><br><label id="res">Ingrese sus datos</label>
+
+                <input type="submit" name="ADMINISTRADO2" class="btn btn-success" href="javascript:;" onclick="location='Administrador.html'" value="ADMINISTRADOR">
+ 
+
+              			<br><br><br><label id="res">Ingrese sus datos</label>
 		</form>
 	</div>
 </body>

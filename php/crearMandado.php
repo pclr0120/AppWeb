@@ -5,7 +5,7 @@
 	if ($username!=""){
 		if ($descripcion!=""){
 			try{
-				$conexion = new PDO('mysql:host=localhost;dbname=mandados', 'root', '1234');
+				$conexion = new PDO('mysql:host=localhost;dbname=mandados', 'root', '');
 		    	$sentencia = $conexion->prepare('INSERT INTO mandado (UsernameCliente, Descripcion) VALUES (:username, :descripcion)');
 				$sentencia->bindParam(':username', $username);
 				$sentencia->bindParam(':descripcion', $descripcion);

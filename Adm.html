@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Mandaditos Los Mochis</title>
+	<meta name="viewport" content="width=device-width, initial-escale=1.0">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+    <script src="alert.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="css/login.css">
+	<meta charset="utf-8">
+<script type="text/javascript">
+    
+
+
+</script>
+	<script>
+
+
+
+
+
+        function climaa(username, password){
+            var parametros = {
+                "username" : username,
+                "password" : password
+            };
+            $.ajax({
+                data:  parametros,
+                url:   'clima.php',
+                type:  'post',
+                success:  function (response) {
+                    $("#lbl_clima").html("Los mochis:"+response);
+                }
+            });
+        }
+
+		function realizarLogin(username, password){
+        	var parametros = {
+                "username" : username,
+                "password" : password
+        	};
+        	$.ajax({
+            	data:  parametros,
+            	url:   'php/UsuarioAdmini.php',
+            	type:  'post',
+   	        	success:  function (response) {
+                	if (response=='Usuario y contraseña correctos.'){
+                		document.getElementById('login').style.display = 'none';
+                		document.getElementById('barra').style.display = 'block';
+                		document.getElementById('Contenido').style.display = 'block';
+                		$("#lbl_username").html("Usuario: " + username);
+                		entregasPendientes(username,password);
+                        climaa();
+                	}
+                	else
+                		$("#res").html(response);
+            	}
+        	});
+		}
+		function crearUsuario(username, password){
+        	var parametros = {
+                "username" : username,
+                "password" : password
+        	};
+        	$.ajax({
+            	data:  parametros,
+            	url:   'php/crearUsuario.php',
+            	type:  'post',
+   	        	success:  function (response) {
+                	$("#res").html(response);
+            	}
+        	});
+		}
+		function cerrarSession(){
+        	$.ajax({
+   	        	success:  function (response) {
+                	document.getElementById('login').style.display = 'block';
+                	document.getElementById('barra').style.display = 'none';
+                	document.getElementById('Contenido').style.display = 'none';
+                	document.getElementById('historial').style.display = 'none';
+                	document.getElementById('solicitarMandado').style.display = 'none';
+            	}
+        	});
+		}
+
+   
+
+		function entregasPendientes(username, password){
+        	var parametros = {
+                "username" : username,
+                "password" : password
+        	};
+        	$.ajax({
+            	data:  parametros,
+            	url:   'php/UsuarioMostrarPendientes.php',
+            	type:  'post',
+   	        	success:  function (response) {
+                	$("#entregasPendientes").html(response);
+            	}
+        	});
+		}
+		function historialMandados(username, password){
+        	var parametros = {
+                "username" : username,
+                "password" : password
+        	};
+        	$.ajax({
+            	data:  parametros,
+            	url:   'php/HISTORIALENTREGADO.php',
+            	type:  'post',
+   	        	success:  function (response) {
+   	        		document.getElementById('historial').style.display = 'block';
+                	document.getElementById('Contenido').style.display = 'none';
+                	$("#lbl_historial").html(response);
+            	}
+        	});
+		}
+		function solicitarMandado(){
+        	$.ajax({
+   	        	success:  function (response) {
+                	document.getElementById('Contenido').style.display = 'none';
+                	document.getElementById('solicitarMandado').style.display = 'block';
+            	}
+        	});
+		}
+            function solicitarMandadoo2(){
+            $.ajax({
+                success:  function (response) {
+                    document.getElementById('Contenido').style.display = 'none';
+                    document.getElementById('solicitarMandadoo2').style.display = 'block';
+                }
+            });
+        }
+		function volverEntregas(){
+        	$.ajax({
+   	        	success:  function (response) {
+                	document.getElementById('historial').style.display = 'none';
+                	document.getElementById('Contenido').style.display = 'block';
+            	}
+        	});
+		}
+		function crearMandado(username, password, descripcion){
+        	var parametros = {
+                "username" : username,
+                "password" : password,
+                "descripcion" : descripcion
+        	};
+        	$.ajax({
+            	data:  parametros,
+            	url:   'php/EntregaEncurso.php',
+            	type:  'post',
+   	        	success:  function (response) {
+                	if (response=='Mandado Vinculado exitosamente.'){
+                		document.getElementById('solicitarMandado').style.display = 'none';
+                		realizarLogin(username, password);
+                	}
+                	else
+                		$("#res_sol").html(response);
+            	}
+        	});
+		}
+		function volverEntregas2(){
+        	$.ajax({
+   	        	success:  function (response) {
+                	document.getElementById('solicitarMandado').style.display = 'none';
+                	document.getElementById('Contenido').style.display = 'block';
+            	}
+        	});
+		}
+            function volverEntregas3(){
+            $.ajax({
+                success:  function (response) {
+                    document.getElementById('solicitarMandadoo2').style.display = 'none';
+                    document.getElementById('Contenido').style.display = 'block';
+                }
+            });
+        }
+
+        function justNumbers(e)
+        {
+        var keynum = window.event ? window.event.keyCode : e.which;
+        if ((keynum == 8) || (keynum == 46))
+        return true;
+         
+        return /\d/.test(String.fromCharCode(keynum));
+        }
+
+        function MandadoEntregado(username, password, descripcion){
+            var parametros = {
+                "username" : username,
+                "password" : password,
+                "descripcion" : descripcion
+            };
+            $.ajax({
+                data:  parametros,
+                url:   'php/REntrega.php',
+                type:  'post',
+                success:  function (response) {
+                    if (response=='Mandado  Entregado exitosamente.'){
+                        document.getElementById('solicitarMandadoo2').style.display = 'none';
+                        historialMandados(username, password);
+                    }
+                    else
+                        $("#res_sol").html(response);
+                }
+            });
+        }
+
+
+
+	</script>
+</head>
+<body>
+	<div id="barra" style='display:none;'>
+		<nav class="navbar navbar-default navbar-fixed-top">
+  			<div class="container-fluid">
+    			<div class="navbar-header">
+      				<a class="navbar-brand" href="#">Madaditos Los Mochis</a>
+      				<p class="navbar-text" id="lbl_username">Nombre de usuario</p>
+                    <p class="navbar-text" id="lbl_clima">Clima</p>
+    			</div>
+	    		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				    <ul class="nav navbar-nav navbar-right">
+				    	<input type="submit" name="CrearUsuario" class="btn btn-default navbar-btn" id='button2' href="javascript:;" onclick="cerrarSession();return false;" value="Cerrar Sesion">
+				    </ul>
+				</div>
+			</div>
+		</nav>
+	</div>
+       
+   
+
+
+
+
+
+
+
+	<div class="jumbotron entregasPendientes" id="Contenido" style='display:none;''>
+		<label id="entregasPendientes">Aqui imprime la tabla</label>
+		<br><br>
+		<input type="submit" name="solicitarMandado" class="btn btn-success" href="javascript:;" onclick="solicitarMandado($('#username').val(), $('#password').val());return false;" value="Tomar Pedido">
+		<input type="submit" name="historialMandados" class="btn btn-success" href="javascript:;" onclick="historialMandados($('#username').val(), $('#password').val());return false;" value="Ver historial de mandados">
+
+            <input type="submit" name="solicitarMandadoo2" class="btn btn-success" href="javascript:;" onclick="solicitarMandadoo2($('#username').val(), $('#password').val());return false;" value="Registrar Entrega">
+	</div>
+
+	<div class="jumbotron entregasPendientes" id="historial" style='display:none;''>
+		<label id="lbl_historial">Aqui imprime historialMandados</label>
+		<br><br>
+		<input type="submit" name="volverEntregas" class="btn btn-success" href="javascript:;" onclick="volverEntregas();return false;" value="Volver">
+	</div>
+
+	<div class="jumbotron boxlogin" id="solicitarMandado" style='display:none;''>
+		<h2>Vincular  Mandado</h2>
+		<label>Ingrese la clave del mandado: </label>
+		<input type="text" name="descripcion" id="descripcion" class="form-control" maxlength="5" >
+		<input type="submit" name="solicitarM" class="btn btn-success" href="javascript:;" onclick="crearMandado($('#username').val(), $('#password').val(), $('#descripcion').val());return false;" value="Pedido Encurso">
+		<input type="submit" name="volverEntregas2" class="btn btn-success" href="javascript:;" onclick="volverEntregas2();return false;" value="Volver">
+		<br><br><br><label id="res_sol"></label>
+	</div>
+
+
+
+    <div class="jumbotron boxlogin" id="solicitarMandadoo2" style='display:none;''>
+        <h2>Registrar Entrega </h2>
+        <label>Ingrese la clave del mandado: </label>
+        <input type="text" name="descripcion2" id="descripcion2" class="form-control" maxlength="5" >
+        <input type="submit" name="solicitarM2" class="btn btn-success" href="javascript:;" onclick="MandadoEntregado($('#username').val(), $('#password').val(), $('#descripcion2').val());return false;" value="Pedido Entregado">
+        <input type="submit" name="volverEntregas2" class="btn btn-success" href="javascript:;" onclick="volverEntregas3();return false;" value="Volver">
+        <br><br><br><label id="res_sol"></label>
+    </div>
+	
+
+
+
+	<div class="jumbotron boxlogin" id="login">
+		<form method="POST" name="login" id="login">
+			<h2>Bienvenido Administrador </h2>
+			<label>Nombre de usuario:</label>
+			<input type="text" name="username" id="username" class="form-control" maxlength="20">
+			<label>Contraseña de usuario:</label>
+			<input type="password" name="password" id="password" class="form-control" maxlength="20">
+			<input type="submit" name="Conectarse" class="btn btn-success" href="javascript:;" onclick="realizarLogin($('#username').val(), $('#password').val());return false;" value="Iniciar Sesion">
+                <input type="submit" name="Conectarse1" id="$button2" class="btn btn-success" href="javascript:;"  value="Iniciar Sesion">	
+ 
+
+              			<br><br><br><label id="res">Ingrese sus datos</label>
+		</form>
+	</div>
+</body>
+</html>
