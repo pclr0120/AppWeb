@@ -10,6 +10,7 @@
     <script src="alert.js"></script>
 
 	<link rel="stylesheet" type="text/css" href="css/login.css">
+    <link rel="stylesheet" type="text/css" href="css/animacion.css">
 	<meta charset="utf-8">
 <script type="text/javascript">
     
@@ -239,7 +240,7 @@
 
 
 
-	<div class="jumbotron entregasPendientes" id="Contenido" style='display:none;''>
+	<div class="jumbotron entregasPendientes animated fadeIn" id="Contenido" style='display:none;''>
 		<label id="entregasPendientes">Aqui imprime la tabla</label>
 		<br><br>
 		<input type="submit" name="solicitarMandado" class="btn btn-success" href="javascript:;" onclick="solicitarMandado($('#username').val(), $('#password').val());return false;" value="Tomar Pedido">
@@ -248,13 +249,13 @@
             <input type="submit" name="solicitarMandadoo2" class="btn btn-success" href="javascript:;" onclick="solicitarMandadoo2($('#username').val(), $('#password').val());return false;" value="Registrar Entrega">
 	</div>
 
-	<div class="jumbotron entregasPendientes" id="historial" style='display:none;''>
+	<div class="jumbotron entregasPendientes animated fadeIn" id="historial" style='display:none;''>
 		<label id="lbl_historial">Aqui imprime historialMandados</label>
 		<br><br>
 		<input type="submit" name="volverEntregas" class="btn btn-success" href="javascript:;" onclick="volverEntregas();return false;" value="Volver">
 	</div>
 
-	<div class="jumbotron boxlogin" id="solicitarMandado" style='display:none;''>
+	<div class="jumbotron boxlogin animated fadeIn" id="solicitarMandado" style='display:none;''>
 		<h2>Vincular  Mandado</h2>
 		<label>Ingrese la clave del mandado: </label>
 		<input type="text" name="descripcion" id="descripcion" class="form-control" maxlength="5" >
@@ -265,7 +266,7 @@
 
 
 
-    <div class="jumbotron boxlogin" id="solicitarMandadoo2" style='display:none;''>
+    <div class="jumbotron boxlogin animated fadeIn" id="solicitarMandadoo2" style='display:none;''>
         <h2>Registrar Entrega </h2>
         <label>Ingrese la clave del mandado: </label>
         <input type="text" name="descripcion2" id="descripcion2" class="form-control" maxlength="5" >
@@ -277,7 +278,7 @@
 
 
 
-	<div class="jumbotron boxlogin" id="login">
+	<div class="jumbotron boxlogin animated fadeIn" id="login" >
 		<form method="POST" name="login" id="login">
 			<h2>Bienvenido Administrador </h2>
 			<label>Nombre de usuario:</label>

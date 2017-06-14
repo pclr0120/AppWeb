@@ -5,7 +5,7 @@
 	if ($username!=""){
 		if ($password!=""){
 			try{
-				$conexion = new PDO('mysql:host=localhost;dbname=mandados', 'root', '');
+				$conexion = new PDO('mysql:host=localhost;dbname=mandados', 'root', '1234');
 				echo "<h2>Historial de mandados.</h2>";
 		    	echo '<table class="table table-striped">';  
 		    	echo "<thead>";  
@@ -18,7 +18,7 @@
 				echo "</tr>"; 
 		    	echo "</thead>"; 
 		    	echo "<tbody>";    
-				foreach($conexion->query('SELECT * FROM Mandado where Estatus="ENTREGADO"' ) as $row){
+				foreach($conexion->query('SELECT * FROM Mandado where Estatus="E"' ) as $row){
  					echo "<tr>";  
 					echo "<th>",$row['IdMandado'],"</th>";  
 					echo "<th>",$row['UsernameCliente'],"</th>";  

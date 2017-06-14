@@ -5,7 +5,7 @@
 	if ($username!=""){
 		if ($password!=""){
 			try{
-				$conexion = new PDO('mysql:host=localhost;dbname=mandados', 'root', '');
+				$conexion = new PDO('mysql:host=localhost;dbname=mandados', 'root', '1234');
 				echo "<h2>Entregas pendientes.</h2>";
 		    	echo '<table class="table table-striped">';  
 		    	echo "<thead>";  
@@ -18,7 +18,7 @@
 				echo "</tr>"; 
 		    	echo "</thead>"; 
 		    	echo "<tbody>";    
-		    	$query='SELECT * FROM Mandado WHERE UsernameCliente="'.$username.'"  and Estatus="ENCURSO" or Estatus="PENDIENTE"';
+		    	$query='SELECT * FROM Mandado WHERE UsernameCliente="'.$username.'"  and Estatus="C" or Estatus="P"';
 		    	
 				foreach($conexion->query($query) as $row){
  					echo "<tr>";  

@@ -8,6 +8,7 @@
 	<script type="text/javascript" src="js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/login.css">
+    <link rel="stylesheet" type="text/css" href="css/animacion.css">
 	<meta charset="utf-8">
 
 	<script>
@@ -188,20 +189,20 @@
 
 
 
-	<div class="jumbotron entregasPendientes" id="Contenido" style='display:none;''>
+	<div class="jumbotron entregasPendientes animated fadeIn" id="Contenido" style='display:none;''>
 		<label id="entregasPendientes">Aqui imprime la tabla</label>
 		<br><br>
 		<input type="submit" name="solicitarMandado" class="btn btn-success" href="javascript:;" onclick="solicitarMandado($('#username').val(), $('#password').val());return false;" value="Solicitar Nuevo Mandado">
 		<input type="submit" name="historialMandados" class="btn btn-success" href="javascript:;" onclick="historialMandados($('#username').val(), $('#password').val());return false;" value="Ver historial de mandados">
 	</div>
 
-	<div class="jumbotron entregasPendientes" id="historial" style='display:none;''>
+	<div class="jumbotron entregasPendientes animated fadeIn" id="historial" style='display:none;''>
 		<label id="lbl_historial">Aqui imprime historialMandados</label>
 		<br><br>
 		<input type="submit" name="volverEntregas" class="btn btn-success" href="javascript:;" onclick="volverEntregas();return false;" value="Volver">
 	</div>
 
-	<div class="jumbotron boxlogin" id="solicitarMandado" style='display:none;''>
+	<div class="jumbotron boxlogin animated fadeIn" id="solicitarMandado" style='display:none;''>
 		<h2>Solicitar Mandado</h2>
 		<label>Ingrese la descripcion de su pedido: </label>
 		<input type="text" name="descripcion" id="descripcion" class="form-control" maxlength="300"  >
@@ -210,7 +211,7 @@
 		<br><br><br><label id="res_sol">Ingrese su pedido</label>
 	</div>
 	
-	<div class="jumbotron boxlogin" id="login">
+	<div class="jumbotron boxlogin animated fadeIn" id="login">
 		<form method="POST" name="login" id="login">
 			<h2>Bienvenido a Mandaditos Los Mochis</h2>
 			<label>Nombre de usuario:</label>

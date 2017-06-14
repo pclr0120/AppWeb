@@ -5,8 +5,8 @@
 	if ($username!=""){
 		if ($descripcion!=""){
 			try{
-				$conexion = new PDO('mysql:host=localhost;dbname=mandados', 'root', '');
-		    	$sentencia = $conexion->prepare("update  mandado set Estatus='ENTREGADO'  where idMandado=".$descripcion);
+				$conexion = new PDO('mysql:host=localhost;dbname=mandados', 'root', '1234');
+		    	$sentencia = $conexion->prepare("update  mandado set Estatus='E'  where idMandado=".$descripcion);
 				$sentencia->bindParam(':username', $username);
 				$sentencia->bindParam(':descripcion', $descripcion);
 				$sentencia->execute();

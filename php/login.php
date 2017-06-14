@@ -5,7 +5,7 @@
 	if ($username!=""){
 		if ($password!=""){
 			try{
-				$conexion = new PDO('mysql:host=localhost;dbname=mandados', 'root', '');
+				$conexion = new PDO('mysql:host=localhost;dbname=mandados', 'root', '1234');
 				$sentencia = $conexion->prepare('SELECT COUNT(id) FROM cliente WHERE username=:username AND password=:password');
 				$sentencia->bindParam(':username', $username);
 				$sentencia->bindParam(':password', $password);
